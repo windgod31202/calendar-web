@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <title>建立活動</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/event.css" />
 </head>
 <body>
 
-  <!-- 加載 Sidebar -->
+  <!-- Sidebar -->
   <div id="sidebar-container"></div>
 
   <div class="main">
@@ -16,28 +17,15 @@
       <input type="text" id="title" placeholder="活動主題" required />
       <input type="datetime-local" id="start" required />
       <input type="datetime-local" id="end" required />
+      <input type="text" id="location" placeholder="活動地點（地址）" />
+      <textarea id="description" placeholder="活動詳細資訊"></textarea>
       <button type="submit">建立</button>
     </form>
+
+    <!-- 地圖預覽 -->
+    <div id="map-preview"></div>
   </div>
 
-  <script>
-    // 加載 Sidebar
-    document.getElementById('sidebar-container').innerHTML = 
-      fetch('sidebar.html')
-        .then(response => response.text())
-        .then(data => document.getElementById('sidebar-container').innerHTML = data);
-  </script>
-  <script>
-    document.getElementById('eventForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const title = document.getElementById('title').value;
-      const start = new Date(document.getElementById('start').value).toISOString().replace(/-|:|\.\d\d\d/g, "");
-      const end = new Date(document.getElementById('end').value).toISOString().replace(/-|:|\.\d\d\d/g, "");
-      let url = `https://calendar.google.com/calendar/render?action=TEMPLATE`;
-      url += `&text=${encodeURIComponent(title)}`;
-      url += `&dates=${start}/${end}`;
-      window.open(url, "_blank");
-    });
-  </script>
+  <script src="assets/js/event.js" defer></script>
 </body>
 </html>
