@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>首頁</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- 頁面主內容 -->
+  <div class="main" id="mainContent">
+    <h1>這是首頁</h1>
+    <p>這裡是內容區域，可依功能更新。</p>
+  </div>
+
+  <!-- JavaScript 來加載sidebar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('pages/sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.body.insertAdjacentHTML('afterbegin', data); // 插入sidebar
+        })
+        .catch(err => console.error('無法加載側邊選單:', err));
+    });
+  </script>
+
+  <script defer src="../assets/js/script.js"></script>
+</body>
+</html>
