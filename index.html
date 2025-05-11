@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>新增 Google Calendar 活動</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日曆活動產生器</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>建立活動到 Google 日曆</h1>
-  <form id="eventForm">
-    <label for="title">活動標題：</label>
-    <input type="text" id="title" required><br>
+  <div class="container">
+    <h1>建立 Google 日曆活動</h1>
+    <form id="eventForm">
+      <label for="title">活動標題：</label>
+      <input type="text" id="title" name="title" required>
 
-    <label for="start">開始時間：</label>
-    <input type="datetime-local" id="start" required><br>
+      <label for="date">日期：</label>
+      <input type="date" id="date" name="date" required>
 
-    <label for="end">結束時間：</label>
-    <input type="datetime-local" id="end" required><br>
+      <label for="time">時間：</label>
+      <input type="time" id="time" name="time" required>
 
-    <button type="submit">新增到 Google 日曆</button>
-  </form>
+      <button type="submit">建立活動</button>
+    </form>
+    <div id="result"></div>
+  </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('eventForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      const datetime = new Date(`${date}T${time}`);
+      const isoString = datetime.toISOString();
+
+      const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${isoString.replace(/[-:]/g, '').slice(0, 15)}/${isoString.replace(/[-:]/g, '').slice(0, 15)}`;
+
+      document.getElementById('result').innerHTML = `<a href="${calendarUrl}" target="_blank">➤ 點我新增到 Google 日曆</a>`;
+    });
+  </script>
 </body>
 </html>
