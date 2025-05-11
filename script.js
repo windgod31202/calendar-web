@@ -25,7 +25,6 @@ document.getElementById('eventForm').addEventListener('submit', function(e) {
       calendarUrl += `&details=${encodeURIComponent(`提醒：活動前 ${reminder} 分鐘`)}`;
       calendarUrl += `&triggers=${reminderFormatted}`;  // 提醒時間加入
     }
-  
     // 顯示生成的 Google 日曆連結
     document.getElementById('result').innerHTML = `<a href="${calendarUrl}" target="_blank">➤ 點我新增到 Google 日曆</a>`;
   });
