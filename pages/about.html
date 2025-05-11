@@ -3,13 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>關於本站</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/css/style.css"> <!-- 確保路徑正確 -->
 </head>
 <body>
+  <!-- 側邊選單會在此動態插入 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 假設 sidebar.html 在根目錄下，因此使用相對路徑從上層目錄加載
+      fetch('../sidebar.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('無法加載 sidebar.html：' + response.status);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.body.insertAdjacentHTML('afterbegin', data); // 在 body 開頭插入sidebar
+        })
+        .catch(err => console.error('無法加載側邊選單:', err));
+    });
+  </script>
+
+  <!-- 頁面主內容 -->
   <h1>關於本站</h1>
   <p>這是一個使用 Google 日曆 API 所製作的工具網站，幫助您快速建立活動並通知自己。</p>
 
   <h2>開發者</h2>
-  <p>本網站由Windgod開發，致力於結合前端與雲端服務，提升工作效率。</p>
+  <p>本網站由 Windgod 開發，致力於結合前端與雲端服務，提升工作效率。</p>
 </body>
 </html>
