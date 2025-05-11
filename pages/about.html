@@ -10,7 +10,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // 假設 sidebar.html 在根目錄下，因此使用相對路徑從上層目錄加載
-      fetch('../sidebar.html')
+      fetch('sidebar.html')
         .then(response => {
           if (!response.ok) {
             throw new Error('無法加載 sidebar.html：' + response.status);

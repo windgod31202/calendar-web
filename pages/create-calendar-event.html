@@ -9,7 +9,7 @@
   <!-- 側邊選單會在此動態插入 -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      fetch('../sidebar.html')
+      fetch('sidebar.html')
         .then(response => response.text())
         .then(data => {
           document.body.insertAdjacentHTML('afterbegin', data); // 在 body 開頭插入sidebar
