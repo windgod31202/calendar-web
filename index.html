@@ -16,7 +16,7 @@
   <!-- JavaScript 來加載sidebar -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      fetch('pages/sidebar.html')
+      fetch('sidebar.html')
         .then(response => response.text())
         .then(data => {
           document.body.insertAdjacentHTML('afterbegin', data); // 插入sidebar
