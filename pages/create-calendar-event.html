@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>建立活動</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <!-- 側邊選單會在此動態插入 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('../sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.body.insertAdjacentHTML('afterbegin', data); // 在 body 開頭插入sidebar
+        })
+        .catch(err => console.error('無法加載側邊選單:', err));
+    });
+  </script>
+
+  <!-- 頁面主內容 -->
+  <div class="main" id="mainContent">
+    <h1>建立 Google 日曆活動</h1>
+    <form id="eventForm">
+      <input type="text" id="title" placeholder="活動主題" required>
+      <input type="datetime-local" id="start" required>
+      <input type="datetime-local" id="end" required>
+      <button type="submit">建立</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('eventForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const start = new Date(document.getElementById('start').value).toISOString().replace(/-|:|\.\d\d\d/g,"");
+      const end = new Date(document.getElementById('end').value).toISOString().replace(/-|:|\.\d\d\d/g,"");
+
+      let url = `https://calendar.google.com/calendar/render?action=TEMPLATE`;
+      url += `&text=${encodeURIComponent(title)}`;
+      url += `&dates=${start}/${end}`;
+
+      window.open(url, "_blank");
+    });
+  </script>
+
+<script defer src="../assets/js/script.js"></script>
+
+</body>
+</html>
