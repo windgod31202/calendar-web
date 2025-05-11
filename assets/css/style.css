@@ -1,89 +1,69 @@
-/* 全體風格設定 */
+/* 基本樣式設定 */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ff4e50, #f9d423);
-    color: #fff;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* 容器 */
-  .container {
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-  }
-  
-  /* 標題 */
-  h1 {
-    text-align: center;
-    color: #ffffff;
-    font-size: 2rem;
-  }
-  
-  /* 表單樣式 */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  label {
-    font-weight: bold;
-    color: #ffefc5;
-  }
-  
-  input {
-    padding: 0.6rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #ffeaa7;
-    color: #2d3436;
-  }
-  
-  input:focus {
-    outline: 2px solid #fd79a8;
-  }
-  
-  /* 按鈕 */
-  button {
-    padding: 0.8rem;
-    background: linear-gradient(45deg, #00cec9, #0984e3);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
-  }
-  
-  button:hover {
-    background: linear-gradient(45deg, #6c5ce7, #fd79a8);
-    transform: scale(1.05);
-  }
-  
-  /* 結果區域 */
-  #result {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 1.2rem;
-  }
-  
-  #result a {
-    color: #ffeaa7;
-    text-decoration: underline;
-  }
-  select {
-    padding: 0.6rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #ffeaa7;
-    color: #2d3436;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+/* Sidebar - 常駐開啟並具有滾動功能 */
+.sidebar {
+  height: 100vh; /* 佔滿整個視窗高度 */
+  width: 250px; /* 設定固定寬度 */
+  position: fixed; /* 固定在頁面上 */
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-y: auto; /* 啟用垂直滾動條 */
+  transition: 0.3s; 
+  padding-top: 60px;
+}
+
+/* Sidebar links */
+.sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+/* Hover effect */
+.sidebar a:hover {
+  background-color: #575757;
+}
+
+/* Main content area */
+.main {
+  margin-left: 250px; /* 主內容區域移到右側，避免被選單遮擋 */
+  padding: 20px;
+  flex-grow: 1;
+}
+
+/* 按鈕樣式（如果還有使用的話） */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100; /* 確保按鈕在頂層 */
+}
+
+/* 可調整選單的滾動條外觀（可選） */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #575757;
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: #333;
+}

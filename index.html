@@ -2,91 +2,29 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>側邊選單示範</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      height: 100vh;
-      width: 0;
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-    }
-
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.2s;
-    }
-
-    .sidebar a:hover {
-      background-color: #575757;
-    }
-
-    .openbtn {
-      font-size: 20px;
-      cursor: pointer;
-      background-color: #111;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-    }
-
-    .main {
-      margin-left: 0;
-      transition: margin-left 0.3s;
-      padding: 20px;
-      flex-grow: 1;
-    }
-
-    /* When sidebar is open */
-    .sidebar.open {
-      width: 250px;
-    }
-
-    .main.shifted {
-      margin-left: 250px;
-    }
-  </style>
+  <title>首頁</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div id="mySidebar" class="sidebar">
-    <a href="index.html">首頁</a>
-    <a href="pages/create-event.html">建立活動</a>
-    <a href="pages/about.html">關於本站</a>
-  </div>
-
-  <!-- Page content -->
+  <!-- 頁面主內容 -->
   <div class="main" id="mainContent">
-    <button class="openbtn" onclick="toggleSidebar()">☰ 開啟選單</button>
     <h1>這是首頁</h1>
     <p>這裡是內容區域，可依功能更新。</p>
   </div>
 
+  <!-- JavaScript 來加載sidebar -->
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById("mySidebar");
-      const main = document.getElementById("mainContent");
-      sidebar.classList.toggle("open");
-      main.classList.toggle("shifted");
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('pages/sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.body.insertAdjacentHTML('afterbegin', data); // 插入sidebar
+        })
+        .catch(err => console.error('無法加載側邊選單:', err));
+    });
   </script>
+
+  <script defer src="assets/js/script.js"></script>
 </body>
 </html>
