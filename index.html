@@ -11,19 +11,28 @@
   <div class="container">
     <h1>建立 Google 日曆活動</h1>
     <form id="eventForm">
-      <label for="title">活動標題：</label>
-      <input type="text" id="title" name="title" required>
-
-      <label for="date">日期：</label>
-      <input type="date" id="date" name="date" required>
-
-      <label for="time">時間：</label>
-      <input type="time" id="time" name="time" required>
-
-      <button type="submit">建立活動</button>
-    </form>
-    <div id="result"></div>
-  </div>
+        <label for="title">活動標題：</label>
+        <input type="text" id="title" name="title" required>
+      
+        <label for="date">日期：</label>
+        <input type="date" id="date" name="date" required>
+      
+        <label for="time">時間：</label>
+        <input type="time" id="time" name="time" required>
+      
+        <label for="reminder">提醒時間：</label>
+        <select id="reminder" name="reminder">
+          <option value="">無提醒</option>
+          <option value="5">提前 5 分鐘</option>
+          <option value="10">提前 10 分鐘</option>
+          <option value="30">提前 30 分鐘</option>
+          <option value="60">提前 1 小時</option>
+        </select>
+      
+        <button type="submit">建立活動</button>
+      </form>
+      <div id="result"></div>
+      
 
   <script>
     document.getElementById('eventForm').addEventListener('submit', function(e) {

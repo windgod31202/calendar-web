@@ -78,4 +78,12 @@ body {
     color: #ffeaa7;
     text-decoration: underline;
   }
+  select {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffeaa7;
+    color: #2d3436;
+  }
   
