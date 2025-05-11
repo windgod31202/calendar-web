@@ -1,0 +1,23 @@
+<!-- sidebar.html -->
+<div id="mySidebar" class="sidebar">
+  <a href="index.html" id="homeLink">首頁</a>  
+  <a href="create-calendar-event.html">建立活動</a>
+  <a href="about.html">關於本站</a>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const currentPage = window.location.pathname;  // 獲取當前頁面的路徑
+    const basePath = currentPage.includes('/pages') ? '../' : '';  // 檢查是否在 'pages' 資料夾內
+
+    // 動態調整首頁連結的路徑
+    const homeLink = document.getElementById('homeLink');
+    if (homeLink) {
+      homeLink.setAttribute('href', basePath + 'index.html');  // 如果在 'pages' 資料夾內，改為 '../index.html'
+    }
+  });
+</script>
+
+<!-- 引入根目錄下的 CSS 和 JS -->
+<link rel="stylesheet" href="../assets/css/style.css">  <!-- 引入 CSS -->
+<script defer src="../assets/js/script.js"></script>  <!-- 引入 JS -->
