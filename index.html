@@ -1,54 +1,102 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日曆活動產生器</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <title>日曆工具網站</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+    }
+
+    nav {
+      background: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav button {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .page {
+      display: none;
+      padding: 2rem;
+    }
+
+    .active {
+      display: block;
+    }
+
+    input, button, select {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 400px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>建立 Google 日曆活動</h1>
+
+  <nav>
+    <button onclick="showPage('home')">🏠 首頁</button>
+    <button onclick="showPage('calendar')">📅 建立活動</button>
+  </nav>
+
+  <div id="home" class="page active">
+    <h1>歡迎使用日曆工具！</h1>
+    <p>這是一個簡單的網頁，能幫你快速建立 Google 日曆活動。</p>
+  </div>
+
+  <div id="calendar" class="page">
+    <h2>建立 Google 日曆活動</h2>
     <form id="eventForm">
-        <label for="title">活動標題：</label>
-        <input type="text" id="title" name="title" required>
-      
-        <label for="date">日期：</label>
-        <input type="date" id="date" name="date" required>
-      
-        <label for="time">時間：</label>
-        <input type="time" id="time" name="time" required>
-      
-        <label for="reminder">提醒時間：</label>
-        <select id="reminder" name="reminder">
-          <option value="">無提醒</option>
-          <option value="5">提前 5 分鐘</option>
-          <option value="10">提前 10 分鐘</option>
-          <option value="30">提前 30 分鐘</option>
-          <option value="60">提前 1 小時</option>
-        </select>
-      
-        <button type="submit">建立活動</button>
-      </form>
-      <div id="result"></div>
-      
+      <input type="text" id="title" placeholder="活動主題" required>
+      <input type="datetime-local" id="start" required>
+      <input type="datetime-local" id="end" required>
+      <select id="reminder">
+        <option value="0">不提醒</option>
+        <option value="10">10 分鐘前</option>
+        <option value="30">30 分鐘前</option>
+        <option value="60">1 小時前</option>
+      </select>
+      <button type="submit">建立活動</button>
+    </form>
+  </div>
 
   <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
     document.getElementById('eventForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const title = document.getElementById('title').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
+      const start = new Date(document.getElementById('start').value).toISOString().replace(/-|:|\.\d\d\d/g,"");
+      const end = new Date(document.getElementById('end').value).toISOString().replace(/-|:|\.\d\d\d/g,"");
+      const reminder = document.getElementById('reminder').value;
 
-      const datetime = new Date(`${date}T${time}`);
-      const isoString = datetime.toISOString();
+      let url = `https://calendar.google.com/calendar/render?action=TEMPLATE`;
+      url += `&text=${encodeURIComponent(title)}`;
+      url += `&dates=${start}/${end}`;
+      if (reminder !== "0") {
+        url += `&recur=RRULE:FREQ=DAILY;INTERVAL=1`; // 可改為提醒用法
+      }
 
-      const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${isoString.replace(/[-:]/g, '').slice(0, 15)}/${isoString.replace(/[-:]/g, '').slice(0, 15)}`;
-
-      document.getElementById('result').innerHTML = `<a href="${calendarUrl}" target="_blank">➤ 點我新增到 Google 日曆</a>`;
+      window.open(url, "_blank");
     });
   </script>
+
 </body>
 </html>
