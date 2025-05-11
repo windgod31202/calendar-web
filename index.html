@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>新增 Google Calendar 活動</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>建立活動到 Google 日曆</h1>
+  <form id="eventForm">
+    <label for="title">活動標題：</label>
+    <input type="text" id="title" required><br>
+
+    <label for="start">開始時間：</label>
+    <input type="datetime-local" id="start" required><br>
+
+    <label for="end">結束時間：</label>
+    <input type="datetime-local" id="end" required><br>
+
+    <button type="submit">新增到 Google 日曆</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
