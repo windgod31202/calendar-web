@@ -5,6 +5,8 @@
   <title>建立活動</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/event.css" />
+  <!-- 加在 <head> 中 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -22,12 +24,12 @@
         
         <div class="form-group">
           <label for="start">開始時間</label>
-          <input type="datetime-local" id="start" required />
+          <input type="text" id="start" placeholder="選擇開始時間" required />
         </div>
 
         <div class="form-group">
           <label for="end">結束時間</label>
-          <input type="datetime-local" id="end" required />
+          <input type="text" id="end" placeholder="選擇結束時間" required />
         </div>
 
         <div class="form-group">
@@ -49,5 +51,8 @@
   </div>
 
   <script src="assets/js/event.js" defer></script>
+  <!-- Flatpickr 樣式與腳本 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>

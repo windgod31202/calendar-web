@@ -46,3 +46,19 @@ document.getElementById('eventForm').addEventListener('submit', function (e) {
 
   window.open(url, "_blank");
 });
+flatpickr("#start", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    minDate: "today",
+    minuteIncrement: 1
+  });
+  
+  flatpickr("#end", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    minDate: "today",
+    minuteIncrement: 1
+  });
+  
