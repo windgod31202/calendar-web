@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>關於本站</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- 加載 Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <div class="main">
+    <h1>關於本站</h1>
+    <p>這是一個使用 Google 日曆 API 所製作的工具網站，幫助您快速建立活動並通知自己。</p>
+
+    <h2>開發者</h2>
+    <p>本網站由 Windgod 開發，致力於結合前端與雲端服務，提升工作效率。</p>
+  </div>
+
+  <script defer src="assets/js/script.js"></script>
+  <script>
+    // 加載 Sidebar
+    document.getElementById('sidebar-container').innerHTML = 
+      fetch('sidebar.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('sidebar-container').innerHTML = data);
+  </script>
+</body>
+</html>
