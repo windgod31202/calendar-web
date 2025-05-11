@@ -11,19 +11,41 @@
   <!-- Sidebar -->
   <div id="sidebar-container"></div>
 
-  <div class="main">
-    <h1>建立 Google 日曆活動</h1>
-    <form id="eventForm">
-      <input type="text" id="title" placeholder="活動主題" required />
-      <input type="datetime-local" id="start" required />
-      <input type="datetime-local" id="end" required />
-      <input type="text" id="location" placeholder="活動地點（地址）" />
-      <textarea id="description" placeholder="活動詳細資訊"></textarea>
-      <button type="submit">建立</button>
-    </form>
+  <div class="main-container">
+    <div class="form-container">
+      <h1>建立 Google 日曆活動</h1>
+      <form id="eventForm">
+        <div class="form-group">
+          <label for="title">活動主題</label>
+          <input type="text" id="title" placeholder="請輸入活動主題" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="start">開始時間</label>
+          <input type="datetime-local" id="start" required />
+        </div>
+
+        <div class="form-group">
+          <label for="end">結束時間</label>
+          <input type="datetime-local" id="end" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">活動地點（地址）</label>
+          <input type="text" id="location" placeholder="請輸入活動地點" />
+        </div>
+
+        <div class="form-group">
+          <label for="description">活動詳細資訊</label>
+          <textarea id="description" placeholder="請輸入活動的詳細資訊"></textarea>
+        </div>
+
+        <button type="submit">建立</button>
+      </form>
+    </div>
 
     <!-- 地圖預覽 -->
-    <div id="map-preview"></div>
+    <div id="map-preview" class="map-preview"></div>
   </div>
 
   <script src="assets/js/event.js" defer></script>
